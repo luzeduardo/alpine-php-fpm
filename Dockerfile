@@ -1,5 +1,5 @@
 FROM alpine:3.3
-MAINTAINER Eduardo Luz <eduardo.luz@m4u.com.br>
+MAINTAINER Eduardo Luz <luz.eduardo@gmail.com>
 
 ENV TIMEZONE            America/Sao_Paulo
 ENV PHP_MEMORY_LIMIT    512M
