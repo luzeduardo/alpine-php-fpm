@@ -33,7 +33,6 @@ php-json libmemcached libmemcached-dev \
         php-mysql \
         php-mcrypt \
         php-xcache \
-        php-odbc \
         php-pdo_mysql \
         php-gettext \
         php-xmlrpc \
@@ -42,7 +41,6 @@ php-json libmemcached libmemcached-dev \
         php-ldap \
         php-iconv \
         php-mysqli \
-        php-xml \
         php-ctype \
         php-fpm \
         php-dom
