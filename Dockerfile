@@ -17,9 +17,9 @@ RUN    apk update && \
 
 RUN apk add curl php php-cli php-curl php-dev php-openssl  \
 php-gd \
-php-json php-phar libmemcached libmemcached-dev
+php-json php-phar libmemcached libmemcached-dev tar
 
-RUN    apk add --update tzdata && \
+RUN apk add --update tzdata && \
     cp /usr/share/zoneinfo/${TIMEZONE} /etc/localtime && \
     echo "${TIMEZONE}" > /etc/timezone && \
     apk add --update \
@@ -46,8 +46,8 @@ RUN    apk add --update tzdata && \
         php-pear \
         php-xml \
         php-ctype \
-        php-fpm
-
+        php-fpm \
+        php-dom
 
 # Set environments
 RUN sed -i "s|;*daemonize\s*=\s*yes|daemonize = no|g" /etc/php/php-fpm.conf && \
@@ -73,9 +73,6 @@ RUN echo "zend_extension=$(find /usr/lib/php/modules/ -name xdebug.so)" > /etc/p
     && echo "xdebug.remote_port=9004" >> /etc/php/php.ini \
     && echo "date.timezone = \"America/Sao_Paulo\";" >> /etc/php/php.ini
 
-RUN apk add libmemcached-dev
-RUN apk add libmemcached
-
 # Bug pecl Alpine
 RUN sed -i "s/\ \-n\ / /" $(which pecl)
 #Install php-memcached by PECL
@@ -87,9 +84,6 @@ RUN mv composer.phar /usr/bin/composer
 # Cleaning up
 RUN apk del tzdata && \
 rm -rf /var/cache/apk/*
-
-RUN apk add --update php-dom
-RUN apk add --update tar
 
 # Set Workdir
 WORKDIR /var/www/html
