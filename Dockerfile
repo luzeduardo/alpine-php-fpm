@@ -15,14 +15,14 @@ RUN apk update && \
     libc-dev \
     make \
     pkgconf \
-    tar curl php-pear tzdata php-dev php-phar
+    tar curl php-pear tzdata php-dev php-phar libmemcached-dev
 
 RUN apk add php php-cli php-curl  \
 php-gd git \
-php-json libmemcached libmemcached-dev \
+php-json libmemcached \
 && cp /usr/share/zoneinfo/${TIMEZONE} /etc/localtime \
 && echo "${TIMEZONE}" > /etc/timezone && \
-    apk add --update \
+    apk add \
         php-iconv \
         php-mcrypt \
         php-soap \
@@ -31,7 +31,6 @@ php-json libmemcached libmemcached-dev \
         php-json \
         php-pdo \
         php-mysql \
-        php-mcrypt \
         php-xcache \
         php-pdo_mysql \
         php-gettext \
@@ -39,7 +38,6 @@ php-json libmemcached libmemcached-dev \
         php-bz2 \
         php-memcache \
         php-ldap \
-        php-iconv \
         php-mysqli \
         php-ctype \
         php-fpm \
