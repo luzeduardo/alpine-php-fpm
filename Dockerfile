@@ -98,4 +98,5 @@ WORKDIR /var/www/html
 EXPOSE 9000
 EXPOSE 9004
 # Entry point
-ENTRYPOINT ["/usr/bin/php-fpm", "-F"]
+COPY entrypoint.sh /entrypoint.sh
+ENTRYPOINT [ "/entrypoint.sh" ]
