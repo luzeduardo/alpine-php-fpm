@@ -1,0 +1,11 @@
+sudo: required
+
+services:
+  - docker
+
+install:
+  - docker build -t luzeduardo/alpine-php-fpm .
+  - docker run -p 9001:9000 --name alpine-php-fpm -d luzeduardo/alpine-php-fpm
+
+script:
+  - docker ps | grep -q alpine-php-fpm
