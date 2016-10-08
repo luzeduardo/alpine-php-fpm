@@ -54,20 +54,6 @@ sed -i "s|;*max_file_uploads =.*|max_file_uploads = ${PHP_MAX_FILE_UPLOAD}|i" /e
 sed -i "s|;*post_max_size =.*|post_max_size = ${PHP_MAX_POST}|i" /etc/php/php.ini && \
 sed -i "s|;*cgi.fix_pathinfo=.*|cgi.fix_pathinfo= 0|i" /etc/php/php.ini
 
-ENV XDEBUG_VERSION 2.3.3
-RUN wget http://xdebug.org/files/xdebug-$XDEBUG_VERSION.tgz \
-    && tar -zxvf xdebug-$XDEBUG_VERSION.tgz \
-    && cd xdebug-$XDEBUG_VERSION && phpize \
-    && ./configure --enable-xdebug && make && make install \
-    && echo "zend_extension=$(find /usr/lib/php/modules/ -name xdebug.so)" > /etc/php/php.ini \
-    && echo "xdebug.remote_enable=on" >> /etc/php/php.ini \
-    && echo "xdebug.remote_handler=dbgp" >> /etc/php/php.ini \
-    && echo "xdebug.remote_connect_back=1" >> /etc/php/php.ini \
-    && echo "xdebug.remote_autostart=on" >> /etc/php/php.ini \
-    && echo "xdebug.remote_port=9004" >> /etc/php/php.ini \
-    && echo "date.timezone = \"America/Sao_Paulo\";" >> /etc/php/php.ini \
-    && rm -rf /var/cache/apk/*
-
 # Bug pecl Alpine && Install php-memcached by PECL
 RUN sed -i "s/\ \-n\ / /" $(which pecl) && \
  cd /usr/local/ && pecl download memcached && tar -xf $(ls -1 memcached*); \
@@ -85,7 +71,6 @@ RUN curl -sS https://getcomposer.org/installer | php \
   && mv composer.phar /usr/bin/composer \
   && apk del tzdata \
   && rm -rf /var/cache/apk/* \
-  && rm xdebug-$XDEBUG_VERSION.tgz && rm -rf xdebug-$XDEBUG_VERSION \
   && apk del .build-deps && rm -rf tmp/*
 
 # Set Workdir
