@@ -54,6 +54,7 @@ sed -i "s|;*max_file_uploads =.*|max_file_uploads = ${PHP_MAX_FILE_UPLOAD}|i" /e
 sed -i "s|;*post_max_size =.*|post_max_size = ${PHP_MAX_POST}|i" /etc/php/php.ini && \
 sed -i "s|;*cgi.fix_pathinfo=.*|cgi.fix_pathinfo= 0|i" /etc/php/php.ini
 
+
 # Bug pecl Alpine && Install php-memcached by PECL
 RUN sed -i "s/\ \-n\ / /" $(which pecl) && \
  cd /usr/local/ && pecl download memcached && tar -xf $(ls -1 memcached*); \
