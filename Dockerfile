@@ -35,6 +35,7 @@ g++ zlib-dev file g++ libc-dev make pkgconf tar curl php-pear tzdata php-dev php
     php-fpm \
     php-dom \
     php-phar \
+    php-zip \
 
 
 # Set environments
