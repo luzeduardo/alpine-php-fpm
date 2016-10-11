@@ -73,4 +73,5 @@ EXPOSE 9000
 EXPOSE 9004
 # Entry point
 COPY entrypoint.sh /entrypoint.sh
+RUN chmod +x /entrypoint.sh
 ENTRYPOINT [ "/entrypoint.sh" ]
