@@ -72,5 +72,5 @@ WORKDIR /var/www/html
 EXPOSE 9000
 EXPOSE 9004
 # Entry point
-COPY entrypoint.sh /entrypoint.sh
+ADD entrypoint.sh /entrypoint.sh
 ENTRYPOINT [ "/entrypoint.sh" ]
