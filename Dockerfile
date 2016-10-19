@@ -61,7 +61,7 @@ g++ zlib-dev file g++ libc-dev make pkgconf tar curl php-pear tzdata php-dev php
     && make && make install && echo -e "extension=\"memcached.so\"\n" > /etc/php/conf.d/memcached.ini \
 
 #Cleanup
-    && apk add openssh \
+    && apk add openssh-client \
     && apk del tzdata \
     && rm -rf /var/cache/apk/* \
     && apk del .build-deps && rm -rf tmp/*
